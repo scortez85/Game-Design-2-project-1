@@ -12,6 +12,7 @@ public class optionsData : MonoBehaviour {
     
 	void Start () {
         //saveOptions();
+        loadOptions();
 	}
 	public void saveOptions()
     {
@@ -26,6 +27,15 @@ public class optionsData : MonoBehaviour {
     public void loadOptions()
     {
         StreamReader reader = new StreamReader("options.dat");
+        musicVolume = float.Parse(reader.ReadLine());
+        sfxVolume = float.Parse(reader.ReadLine());
+        fullscreenEnabled = bool.Parse(reader.ReadLine());
+        violenceEnabled = bool.Parse(reader.ReadLine());
+        reader.Close();
+
+        musicCntrl.GetComponent<Slider>().value = musicVolume;
+        sfxCntrl.GetComponent<Slider>().value = sfxVolume;
+        
         
     }
 	// Update is called once per frame
