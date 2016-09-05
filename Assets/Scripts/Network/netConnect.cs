@@ -30,7 +30,8 @@ namespace UnityEngine.Networking
             DontDestroyOnLoad(gameObject);
             
             manager = GetComponent<NetworkManager>();
-            manager.networkAddress = "192.168.0.5";//remember to set an ip address for us to connect
+            //manager.networkAddress = "192.168.0.5";//remember to set an ip address for us to connect
+            
            // var ip = Network.player.ipAddress;
             //Debug.Log(ip);
             
@@ -47,6 +48,8 @@ namespace UnityEngine.Networking
 
         void Update()
         {
+            if (Application.loadedLevel.Equals(0))
+                manager.networkAddress = GetComponent<optionsData>().netIp;
             if (Application.loadedLevel.Equals(1))
             {
                 if (!manager.isNetworkActive && clientType.Equals("Host"))
@@ -56,7 +59,9 @@ namespace UnityEngine.Networking
             }
         }
         void OnGUI()
-        {}
+        {
+            //GUI.Label(new Rect(10, 10, 128, 64), manager.networkAddress);
+        }
          
     }
 };

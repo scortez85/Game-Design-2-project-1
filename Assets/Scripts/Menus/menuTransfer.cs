@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class menuTransfer : MonoBehaviour {
-    public GameObject multiMenu,mainMenu,optionsMenu;
+    public GameObject multiMenu,mainMenu,optionsMenu,netMenu;
     public Vector3 rotNorm = new Vector3(1, 1, 1);
     public Vector3 rotHide = new Vector3(0, 0, 0);
     public float timer;
@@ -22,6 +22,7 @@ public class menuTransfer : MonoBehaviour {
         if (timer<1 && nextName.Equals("Multi"))
         {
             mainMenu.transform.localScale = rotHide;
+            netMenu.transform.localScale = rotHide;
             multiMenu.transform.localScale = rotNorm;   
         }
         else if(timer<1 && nextName.Equals("Main"))
@@ -40,6 +41,12 @@ public class menuTransfer : MonoBehaviour {
             optionsMenu.transform.localScale = rotNorm;
 
         }
+        else if ((timer<1 && nextName.Equals("Net")))
+        {
+            netMenu.transform.localScale = rotNorm;
+            multiMenu.transform.localScale = rotHide;
+        }
+
 
 
     }

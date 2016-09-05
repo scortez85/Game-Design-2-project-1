@@ -7,6 +7,9 @@ public class GameStructure : MonoBehaviour {
     private Player winningPlayer;
     private int winningKills, winningPickUps;
 
+    //steve added stuff
+    public GameObject[] playerList;
+
 	// Use this for initialization
 	void Start () {
         players = new Player[4];
@@ -17,6 +20,7 @@ public class GameStructure : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        playerList = GameObject.FindGameObjectsWithTag("Player");
 	
 	}
 
@@ -34,5 +38,13 @@ public class GameStructure : MonoBehaviour {
             }
         }
         return winningPlayer;
+    }
+
+    void OnGUI()
+    {
+        for (int k=0;k<playerList.Length;k++)
+        {
+            GUI.Label(new Rect(10, 10 + (k * 32), 256, 32), "Player: " + playerList[k].name + " kills: " + playerList[k].GetComponent<Player>().kills.ToString());
+        }
     }
 }

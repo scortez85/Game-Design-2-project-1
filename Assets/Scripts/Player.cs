@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
-public class Player {
-
-    private int kills, deaths, ammo;
-    private float health, speed;
-    private int teamID, killStreak, modelID;
+public class Player : NetworkBehaviour {
+    [SyncVar]
+    public int kills, deaths, ammo;
+    [SyncVar]
+    public float health, speed;
+    [SyncVar]
+    private string teamID;
+    [SyncVar]
+    private int killStreak, modelID;
+    [SyncVar]
     private List<PickUp> pickUps;
+
+
 
     public Player()
     {
@@ -15,7 +23,6 @@ public class Player {
         deaths = 0;
         ammo = 0;
         killStreak = 0;
-        health = 100;
         speed = 2.5f;
         pickUps = new List<PickUp>();
     }
@@ -28,7 +35,7 @@ public class Player {
         return pickUps.Count;
     }
 
-    public void OnCollisionEnter(Collider coll)
+    public void OnCollisionEnter(Collision coll)//had to change from collider to collision
     {
         if(coll.gameObject.tag.Equals("PickUp"))
         {
@@ -43,4 +50,36 @@ public class Player {
         pickUps.Add(pickedUp);
     }
 
-}
+
+    void Start()
+    {
+    }
+
+    void Update()
+    {
+        //kills += 1; this was a test and only a test
+
+        if (isLocalPlayer)
+            return;//this sends values only to other players
+
+
+        CmdsyncToServer();
+        
+    }
+
+    //sync some values to server 
+    [Command]
+    void CmdsyncToServer()
+    {
+        kills = kills;
+        deaths = deaths;
+        ammo = ammo;
+        health = health;
+        speed = speed;
+        teamID = teamID;
+        killStreak = killStreak;
+        modelID = modelID;
+        pickUps = pickUps;
+    }
+
+    }
