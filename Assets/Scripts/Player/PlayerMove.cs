@@ -2,52 +2,66 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class PlayerMove : NetworkBehaviour {
+public class PlayerMove : NetworkBehaviour
+{
+    private float speed, turning;
+    private string playerState;
+    private hashId hashID;
+    public GameObject projectile, projectileSpawn;
+    private Animator ani;
 
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
-    
-	void Start () {
-        gameObject.name = "Obi 1";
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    //test
+    public GameObject player1, player2;
+        //end test
+
+    void Start()
+    {
+        
+        ani = GetComponent<Animator>();
+        hashID = GetComponent<hashId>();
+        speed = 5f;
+        turning = 200f;
+        gameObject.name = "localPlayer";
+    }
+    void Update()
+    {
         if (!isLocalPlayer)
             return;
         
+        //fire/use weapon
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CmdFire();
+            CmdFight();
         }
+        float vert = Input.GetAxis("Vertical");
+        float horiz = Input.GetAxis("Horizontal");
 
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        float z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
-	}
-    [Command]
-    void CmdFire()
-    
-    {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 6.0f;
-
-        NetworkServer.Spawn(bullet);
-        //NetworkServer.SendToAll(numOfBullets);
-        
-        Destroy(bullet, 2);
-        bullets++;
+        if (!vert.Equals(0))
+        {
+            transform.Translate(0, 0, vert * Time.deltaTime * speed);
+            ani.SetFloat(hashID.speed, 5.5f);
+        }
+        else
+            ani.SetFloat(hashID.speed, 0f);
+        if (!horiz.Equals(0))
+        {
+            transform.Rotate(0, horiz * turning * Time.deltaTime, 0);
+        }
     }
-    [SyncVar]
-    public int bullets;
-    
+
+    [Command]
+    void CmdFight()
+    {
+        GameObject myProjectile = (GameObject)Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+        myProjectile.GetComponent<Rigidbody>().velocity = transform.forward * 6.0f;
+        NetworkServer.Spawn(GetComponent<NetworkManager>().spawnPrefabs[2]);
+        NetworkServer.Spawn(myProjectile);//send obj to server 
+        Destroy(myProjectile, 4);//destroy in 4 sec
+    }
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        GetComponent<MeshRenderer>().material.color = Color.blue;
+        //add stuff to local player
     }
-    
+
 }
