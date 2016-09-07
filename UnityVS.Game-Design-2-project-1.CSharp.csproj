@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\hashId.cs" />
     <Compile Include="Assets\Scripts\Player\playerNetData.cs" />
+    <Compile Include="Assets\Scripts\playerSpawn.cs" />
     <Compile Include="Assets\Scripts\spawnPlayer.cs" />
   </ItemGroup>
   <ItemGroup>

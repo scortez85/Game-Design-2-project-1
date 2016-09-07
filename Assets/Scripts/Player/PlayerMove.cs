@@ -23,6 +23,7 @@ public class PlayerMove : NetworkBehaviour
         turning = 200f;
         gameObject.name = "localPlayer";
     }
+   
     void Update()
     {
         if (!isLocalPlayer)

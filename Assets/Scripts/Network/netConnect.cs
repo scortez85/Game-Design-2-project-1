@@ -15,10 +15,11 @@ namespace UnityEngine.Networking
         [SerializeField]
         private int offsetY;
         public string clientType;
+        //public GameObject player1;
 
         // Runtime variable
         bool showServer = false;
-
+        
         public void setClientType(string type)
         {
             clientType = type;
