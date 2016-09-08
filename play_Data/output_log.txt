@@ -2,32 +2,42 @@ Initialize engine version: 5.1.1f1 (2046fc06d4d8)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: Intel(R) HD Graphics Family (ID=0xa16)
-    Vendor:   Intel
-    VRAM:     128 MB
+    Renderer: AMD Radeon R9 200 Series (ID=0x6798)
+    Vendor:   ATI
+    VRAM:     3072 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.243 seconds
-desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\ProBuilderCore-Unity5.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\ProBuilderCore-Unity5.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\ProBuilderMeshOps-Unity5.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\ProBuilderMeshOps-Unity5.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\KDTree.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\KDTree.dll into Unity Child Domain
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\Triangle.dll (this message is harmless)
+Loading D:\Documents\Game-Design-2-project-1\play_Data\Managed\Triangle.dll into Unity Child Domain
+- Completed reload, in  0.056 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Steven\Documents\Game-Design-2-project-1\play_Data\Managed\System.dll (this message is harmless)
-Setting up 1 worker threads for Enlighten.
-  Thread -> id: ae4 -> priority: 1 
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Documents\Game-Design-2-project-1\play_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2560 -> priority: 1 
+  Thread -> id: f70 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.430208 ms
+UnloadTime: 6.653381 ms
 
-Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 3306.
-Total: 0.851887 ms (FindLiveObjects: 0.154810 ms CreateObjectMapping: 0.094939 ms MarkObjects: 0.505914 ms  DeleteObjects: 0.095366 ms)
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 3513.
+Total: 0.586125 ms (FindLiveObjects: 0.109854 ms CreateObjectMapping: 0.071109 ms MarkObjects: 0.360274 ms  DeleteObjects: 0.044177 ms)
 
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:53077}
