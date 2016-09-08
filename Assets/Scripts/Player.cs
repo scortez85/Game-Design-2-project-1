@@ -7,7 +7,7 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     public int kills, deaths, ammo;
     [SyncVar]
-    public float health, speed;
+    public float health, speed, attackSpeed;
     [SyncVar]
     private string teamID;
     [SyncVar]
@@ -24,6 +24,8 @@ public class Player : NetworkBehaviour {
         ammo = 0;
         killStreak = 0;
         speed = 2.5f;
+        attackSpeed = 1.5f;
+        health = 100.0f;
         pickUps = new List<PickUp>();
     }
     public int getPlayerKills()
