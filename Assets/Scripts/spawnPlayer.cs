@@ -9,10 +9,12 @@ public class spawnPlayer : MonoBehaviour {
 	void Awake () {
         //test
         GameObject player = (GameObject)Instantiate(player1, new Vector3(0, 0, 0),new Quaternion(0,0,0,0));
-        GetComponent<NetworkManager>().playerPrefab = GameObject.FindGameObjectWithTag("Player");
+        //GetComponent<NetworkManager>().playerPrefab = player1;
+        //GetComponent<NetworkManager>().playerPrefab = player2;
         //GetComponent<NetworkManager>().OnServerAddPlayer(ClientScene.,0);
-        NetworkServer.Spawn(GetComponent<NetworkManager>().spawnPrefabs[2]);
-        //end test
+        //NetworkServer.Spawn(GetComponent<NetworkManager>().spawnPrefabs[2]);
+        //end test\
+        NetworkServer.Spawn(player);
 
 
     }
@@ -21,6 +23,6 @@ public class spawnPlayer : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-	
-	}
+        NetworkServer.Spawn(player1);
+    }
 }

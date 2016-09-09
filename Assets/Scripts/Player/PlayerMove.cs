@@ -16,16 +16,19 @@ public class PlayerMove : NetworkBehaviour
 
     void Start()
     {
+        if (!isLocalPlayer)
+            transform.name = "Player1";
         
         ani = GetComponent<Animator>();
         hashID = GetComponent<hashId>();
-        speed = 5f;
-        turning = 200f;
+        speed = 0.5f;
+        turning = 50f;
         gameObject.name = "localPlayer";
     }
    
     void Update()
     {
+        speed = 1f;
         if (!isLocalPlayer)
             return;
         
