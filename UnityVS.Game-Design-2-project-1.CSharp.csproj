@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Player\playerNetData.cs" />
     <Compile Include="Assets\Scripts\playerSpawn.cs" />
     <Compile Include="Assets\Scripts\spawnPlayer.cs" />
+    <Compile Include="Assets\rotsky.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
