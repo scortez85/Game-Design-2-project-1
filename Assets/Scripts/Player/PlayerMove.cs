@@ -7,8 +7,10 @@ public class PlayerMove : NetworkBehaviour
     private float speed, turning;
     private string playerState;
     private hashId hashID;
-    public GameObject projectile, projectileSpawn;
+    public GameObject projectile, projectileSpawn,cameraRig;
     private Animator ani;
+    
+    
 
     //test
     public GameObject player1, player2;
@@ -16,19 +18,25 @@ public class PlayerMove : NetworkBehaviour
 
     void Start()
     {
-        if (!isLocalPlayer)
-            transform.name = "Player1";
+        if (isLocalPlayer)
+        {
+            gameObject.name = "localPlayer";
         
+        GameObject cameras = (GameObject)Instantiate(cameraRig, transform.position, transform.rotation);
+        cameras.GetComponent<fpsCam>().player = gameObject;
         ani = GetComponent<Animator>();
         hashID = GetComponent<hashId>();
-        speed = 0.5f;
+        speed = 2f;
         turning = 50f;
-        gameObject.name = "localPlayer";
+            //gameObject.name = "localPlayer";
+        }
+        else gameObject.name = "netPlayer";
+
     }
-   
+
     void Update()
     {
-        speed = 1f;
+        speed = 2.5f;
         if (!isLocalPlayer)
             return;
         
