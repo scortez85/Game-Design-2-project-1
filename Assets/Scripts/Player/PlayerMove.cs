@@ -43,7 +43,7 @@ public class PlayerMove : NetworkBehaviour
         //fire/use weapon
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CmdFight();
+            //CmdFight();
         }
         float vert = Input.GetAxis("Vertical");
         float horiz = Input.GetAxis("Horizontal");
