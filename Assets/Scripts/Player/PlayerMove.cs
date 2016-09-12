@@ -4,16 +4,17 @@ using UnityEngine.Networking;
 
 public class PlayerMove : NetworkBehaviour
 {
-    private float speed, turning;
+    [SyncVar]
+    public float speed, speedMultiplier, turning;
     private string playerState;
     private hashId hashID;
-    public GameObject projectile, projectileSpawn,cameraRig;
+    public GameObject projectile, projectileSpawn,cameraRig,playerHud;
     private Animator ani;
     
     
 
     //test
-    public GameObject player1, player2;
+    //public GameObject player1, player2;
         //end test
 
     void Start()
@@ -22,11 +23,15 @@ public class PlayerMove : NetworkBehaviour
         {
             gameObject.name = "localPlayer";
         
+        
+        
         GameObject cameras = (GameObject)Instantiate(cameraRig, transform.position, transform.rotation);
+        GameObject hud = (GameObject)Instantiate(playerHud, transform.position, transform.rotation);
+        hud.GetComponent<playerHud>().player = gameObject;
         cameras.GetComponent<fpsCam>().player = gameObject;
         ani = GetComponent<Animator>();
         hashID = GetComponent<hashId>();
-        speed = 2f;
+        speed = 0.6f;
         turning = 50f;
             //gameObject.name = "localPlayer";
         }
@@ -36,7 +41,7 @@ public class PlayerMove : NetworkBehaviour
 
     void Update()
     {
-        speed = 2.5f;
+        //speed = .6f;
         if (!isLocalPlayer)
             return;
         
@@ -50,7 +55,7 @@ public class PlayerMove : NetworkBehaviour
 
         if (!vert.Equals(0))
         {
-            transform.Translate(0, 0, vert * Time.deltaTime * speed);
+            transform.Translate(0, 0, vert * Time.deltaTime * (speed + speedMultiplier));
             ani.SetFloat(hashID.speed, 5.5f);
         }
         else
@@ -74,6 +79,19 @@ public class PlayerMove : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
         //add stuff to local player
+    }
+
+    //void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
+    {
+        //Debug.Log("hit" + col.name);
+        if (col.tag.Equals("teleporter") )
+        {
+         
+
+                transform.position = col.gameObject.GetComponent<telePort>().targetPos;
+        }
+
     }
 
 }

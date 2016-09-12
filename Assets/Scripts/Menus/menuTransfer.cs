@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class menuTransfer : MonoBehaviour {
-    public GameObject multiMenu,mainMenu,optionsMenu,netMenu;
+    public GameObject multiMenu,mainMenu,optionsMenu,netMenu,nameMenu;
     public Vector3 rotNorm = new Vector3(1, 1, 1);
     public Vector3 rotHide = new Vector3(0, 0, 0);
     public float timer;
@@ -23,13 +23,15 @@ public class menuTransfer : MonoBehaviour {
         {
             mainMenu.transform.localScale = rotHide;
             netMenu.transform.localScale = rotHide;
-            multiMenu.transform.localScale = rotNorm;   
+            multiMenu.transform.localScale = rotNorm;
+            nameMenu.transform.localScale = rotHide;
         }
         else if(timer<1 && nextName.Equals("Main"))
         {
             mainMenu.transform.localScale = rotNorm;
             multiMenu.transform.localScale = rotHide;
             optionsMenu.transform.localScale = rotHide;
+            nameMenu.transform.localScale = rotHide;
         }
         else if ((timer<1 &&  nextName.Equals("Exit")))
         {
@@ -39,12 +41,22 @@ public class menuTransfer : MonoBehaviour {
         {
             mainMenu.transform.localScale = rotHide;
             optionsMenu.transform.localScale = rotNorm;
+            nameMenu.transform.localScale = rotHide;
 
         }
         else if ((timer<1 && nextName.Equals("Net")))
         {
             netMenu.transform.localScale = rotNorm;
             multiMenu.transform.localScale = rotHide;
+            nameMenu.transform.localScale = rotHide;
+        }
+        else if ((timer<1 && nextName.Equals("Name")))
+        {
+            netMenu.transform.localScale = rotHide;
+            multiMenu.transform.localScale = rotHide;
+            nameMenu.transform.localScale = rotNorm;
+            mainMenu.transform.localScale = rotHide;
+
         }
 
 

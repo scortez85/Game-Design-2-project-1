@@ -12,20 +12,18 @@ public class playerHud : MonoBehaviour {
 
 
     void Start () {
+        player.GetComponent<Player>().setPlayerTeam("Blue");
         
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (!player.Equals(null))
-        {
-            killsText.GetComponent<Text>().text = player.GetComponent<Player>().kills.ToString();
-            ammoText.GetComponent<Text>().text = player.GetComponent<Player>().ammo.ToString();
-            deathText.GetComponent<Text>().text = player.GetComponent<Player>().deaths.ToString();
-
-        }
+        //player = GameObject.FindGameObjectWithTag("Player");
+        killsText.GetComponent<Text>().text = player.GetComponent<Player>().getPlayerKills().ToString();
+        ammoText.GetComponent<Text>().text = player.GetComponent<Player>().getNumAmmo().ToString();
+        deathText.GetComponent<Text>().text = player.GetComponent<Player>().getPlayerDeaths().ToString();
+        teamText.GetComponent<Text>().text = player.GetComponent<Player>().getPlayerTeam();
 
     }
 }
