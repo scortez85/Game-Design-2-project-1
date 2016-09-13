@@ -16,15 +16,34 @@ public class Enemy : NetworkBehaviour {
 
     //sync some values to server 
     [Command]
-    void CmdsyncToServer()
+    public void CmdsyncToServer(float damage)
     {
-        health = health;
+        health -= damage;
         speed = speed;
         attackDmg = attackDmg;
     }
+    
 
     void Update()
     {
-        CmdsyncToServer();
+        if (health <= 0)
+            Destroy(gameObject);
+        //CmdsyncToServer();
     }
+    public void setHitDamage(float damage)
+    {
+        if (!isServer)
+            return;
+
+        health -= damage;
+
+        RpcDamage();
+    }
+    [ClientRpc]
+    void RpcDamage()
+    {
+        if (isLocalPlayer)
+        health -= 10;
+    }
+    
 }

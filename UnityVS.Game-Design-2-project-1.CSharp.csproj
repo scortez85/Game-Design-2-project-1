@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.1.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -102,11 +100,12 @@
     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\hashId.cs" />
     <Compile Include="Assets\Scripts\Player\playerNetData.cs" />
+    <Compile Include="Assets\Scripts\Player\telePort.cs" />
     <Compile Include="Assets\Scripts\fpsCam.cs" />
+    <Compile Include="Assets\Scripts\itemPickup.cs" />
     <Compile Include="Assets\Scripts\playerShoot.cs" />
     <Compile Include="Assets\Scripts\rotsky.cs" />
     <Compile Include="Assets\Scripts\spawnPlayer.cs" />
-    <Compile Include="Assets\Scripts\Player\telePort.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />

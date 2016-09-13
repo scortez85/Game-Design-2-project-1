@@ -75,11 +75,12 @@ namespace UnityEngine.Networking
 
         void Update()
         {
+            
             //assign names
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             //if (players.Length>0 && Application.loadedLevel>0)
             //players[0].GetComponent<Player>().playerName = playerName;
-            for (int k=0;k<players.Length;k++)
+            //for (int k=0;k<players.Length;k++)
             {
                 //if (players[k].name.Equals("localPlayer"))
                     //players[k].GetComponent<Player>().name = playerName;

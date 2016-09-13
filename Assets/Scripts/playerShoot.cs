@@ -21,11 +21,9 @@ public class playerShoot : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer)
-            return;
 
-        float horiz = Input.GetAxis("Horizontal");
-        float vert = Input.GetAxis("Vertical");
+        //float horiz = Input.GetAxis("Horizontal");
+        //float vert = Input.GetAxis("Vertical");
 
 
 
@@ -38,10 +36,8 @@ public class playerShoot : NetworkBehaviour
         if (Input.GetButtonDown("Jump"))
             if (Physics.Raycast(weaponPos.position, playerDir, out hit))
             {
-                //objHit = hit.collider.name.ToString();
-                CmdShoot(hit.collider.name);
-                //Debug.DrawLine(weaponPos.position, hit.point, Color.cyan);
-                //Debug.Log(hit.collider.name);
+                CmdShoot();
+                objHit = hit.collider.name.ToString();
             }
 
 
@@ -50,8 +46,9 @@ public class playerShoot : NetworkBehaviour
 
     }
     [Command]
-    void CmdShoot(string name)
+    void CmdShoot()
     {
-        objHit = name;
+        hit.collider.gameObject.GetComponent<Enemy>().setHitDamage(10);
     }
+
 }

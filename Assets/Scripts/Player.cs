@@ -6,13 +6,13 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour {
     public GameObject netman;
     [SyncVar]
-    public int kills, deaths, ammo, killStreak, modelID;
+    public int kills, deaths, ammo, killStreak, numOfPickups;
     [SyncVar]
-    public float health, speed, attackSpeed;
+    public float health, speed, damage, damageMultiplier, attackSpeed, speedTimer, damageTimer;
     [SyncVar]
     public string teamID,playerName;
     [SyncVar]
-    public List<PickUp> pickUps;
+    public List<string> pickUps;
 
 
 
@@ -25,8 +25,10 @@ public class Player : NetworkBehaviour {
         speed = 2.5f;
         attackSpeed = 1.5f;
         health = 100.0f;
-        pickUps = new List<PickUp>();
+        pickUps = new List<string>();
         teamID = "Blue";
+        speedTimer = 0;
+        damageTimer = 0;
     }
     public int getPlayerKills()
     {
@@ -66,14 +68,48 @@ public class Player : NetworkBehaviour {
         if(coll.gameObject.tag.Equals("PickUp"))
         {
             GameObject.Destroy(coll.gameObject);
-            pickUpSticks(coll.gameObject.name);
+            pickUpSticks(coll.gameObject.GetComponent<PickUp>().pickUpName);
+            if (coll.gameObject.GetComponent<PickUp>().pickUpName.Equals("Speed"))
+            {
+                speedTimer = coll.gameObject.GetComponent<PickUp>().pickUpTime;
+                GetComponent<PlayerMove>().speedMultiplier = coll.gameObject.GetComponent<PickUp>().pickUpValue;
+            }
+            else if (coll.gameObject.GetComponent<PickUp>().pickUpName.Equals("Damage"))
+            {
+                damageTimer = coll.gameObject.GetComponent<PickUp>().pickUpTime;
+                damageMultiplier = coll.gameObject.GetComponent<PickUp>().pickUpValue;
+            }
+
         }
     }
 
     public void pickUpSticks(string name)
     {
-        PickUp pickedUp = new PickUp(name);
-        pickUps.Add(pickedUp);
+        pickUps.Add(name);
+
+        for (int k=0;k<pickUps.Count-1;k++)
+        {
+            if (pickUps[k].Equals(pickUps[k+1]))
+            {
+                pickUps.Remove(name);
+            }
+
+                
+        }
+    }
+    public void removePickup(string name)
+    {
+        for (int k=0;k<pickUps.Count;k++)
+        {
+            if (pickUps[k].Equals(name))
+            {
+                pickUps.Remove(name);
+                if (name.Equals("Speed"))
+                GetComponent<PlayerMove>().speedMultiplier = 0;
+                if (name.Equals("Damage"))
+                    damageMultiplier = 0;
+            }
+        }
     }
 
 
@@ -83,12 +119,22 @@ public class Player : NetworkBehaviour {
 
     void Update()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (speedTimer > 0)
+            speedTimer--;
+        if (damageTimer > 0)
+            damageTimer--;
+
+        //remove pickup
+        if (speedTimer.Equals(0))
+            removePickup("Speed");
+        if (damageTimer.Equals(0))
+            removePickup("Damage");
+        //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         //kills += 1; this was a test and only a test
         //send value from local network manager to player then update host/server
         if (isLocalPlayer)
-            playerName = netman.GetComponent<netConnect>().playerName;//GameObject.FindGameObjectWithTag("netManager").GetComponent<netConnect>().playerName;
-        else playerName = players[1].GetComponent<Player>().netman.GetComponent<netConnect>().playerName;
+            playerName = GameObject.FindGameObjectWithTag("netManager").GetComponent<netConnect>().playerName;
+        //else playerName = players[1].GetComponent<Player>().netman.GetComponent<netConnect>().playerName;
         if (isLocalPlayer)
             return;//this sends values only to other players
         
@@ -106,11 +152,11 @@ public class Player : NetworkBehaviour {
         ammo = ammo;
         health = health;
         speed = speed;
-        teamID = teamID;
+        teamID = "Blue";
         killStreak = killStreak;
-        modelID = modelID;
+        numOfPickups = numOfPickups;
         pickUps = pickUps;
-        playerName = playerName;
+        playerName = GetComponent<NetworkManager>().GetComponent<netConnect>().playerName;
     }
 
 
