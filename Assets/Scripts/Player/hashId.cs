@@ -3,12 +3,12 @@ using System.Collections;
 
 public class hashId : MonoBehaviour {
 
-    public int speed,jump,shoot,death;
+    public int speed,jump, isShooting, death;
     void Start()
     {
         speed = Animator.StringToHash("speed");
         jump = Animator.StringToHash("jump");
-        shoot = Animator.StringToHash("shoot");
+        isShooting = Animator.StringToHash("isShooting");
         death = Animator.StringToHash("death");
     }
 	

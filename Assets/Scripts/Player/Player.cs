@@ -13,7 +13,8 @@ public class Player : NetworkBehaviour {
     public string teamID,playerName;
     [SyncVar]
     public List<string> pickUps;
-
+    public AudioClip speedSound, damageSound;
+    public AudioSource sfxSource;
 
 
     public Player()
@@ -71,11 +72,15 @@ public class Player : NetworkBehaviour {
             pickUpSticks(coll.gameObject.GetComponent<PickUp>().pickUpName);
             if (coll.gameObject.GetComponent<PickUp>().pickUpName.Equals("Speed"))
             {
+                sfxSource.clip = speedSound;
+                sfxSource.Play();
                 speedTimer = coll.gameObject.GetComponent<PickUp>().pickUpTime;
                 GetComponent<PlayerMove>().speedMultiplier = coll.gameObject.GetComponent<PickUp>().pickUpValue;
             }
             else if (coll.gameObject.GetComponent<PickUp>().pickUpName.Equals("Damage"))
             {
+                sfxSource.clip = damageSound;
+                sfxSource.Play();
                 damageTimer = coll.gameObject.GetComponent<PickUp>().pickUpTime;
                 damageMultiplier = coll.gameObject.GetComponent<PickUp>().pickUpValue;
             }
@@ -115,6 +120,7 @@ public class Player : NetworkBehaviour {
 
     void Start()
     {
+        sfxSource = GetComponent<AudioSource>();
     }
 
     void Update()

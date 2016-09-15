@@ -52,18 +52,25 @@ public class PlayerMove : NetworkBehaviour
         }
         float vert = Input.GetAxis("Vertical");
         float horiz = Input.GetAxis("Horizontal");
+        float turn = Input.GetAxis("Turning");
+        float pitch = Input.GetAxis("Pitch");
 
         if (!vert.Equals(0))
         {
-            transform.Translate(0, 0, vert * Time.deltaTime * (speed + speedMultiplier));
+            //transform.Translate(0, 0, vert * Time.deltaTime * (speed + speedMultiplier));
             ani.SetFloat(hashID.speed, 5.5f);
         }
         else
             ani.SetFloat(hashID.speed, 0f);
-        if (!horiz.Equals(0))
+       // if (!horiz.Equals(0))
+       if (!turning.Equals(0))
         {
-            transform.Rotate(0, horiz * turning * Time.deltaTime, 0);
+            //transform.Rotate(0, turn * turning * Time.deltaTime, 0);
         }
+
+        //move and rotate player
+        transform.Translate(horiz * speed *  Time.deltaTime, 0, vert * Time.deltaTime * (speed + speedMultiplier));
+        transform.Rotate(pitch * turning * Time.deltaTime, turn * turning * Time.deltaTime, 0);
     }
 
     [Command]

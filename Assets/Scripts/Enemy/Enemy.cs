@@ -6,6 +6,7 @@ public class Enemy : NetworkBehaviour {
     [SyncVar]
     public float health, speed, attackDmg, attackSpeed;
     public GameObject[] enemyCor;
+    public NavMeshAgent agent;
 
     public Enemy()
     {
@@ -27,6 +28,8 @@ public class Enemy : NetworkBehaviour {
 
     void Update()
     {
+        agent.speed = speed;
+
         if (health <= 0)
             Destroy(gameObject);
         //CmdsyncToServer();
@@ -48,7 +51,20 @@ public class Enemy : NetworkBehaviour {
     }
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         enemyCor = GameObject.FindGameObjectsWithTag("enemyCor");
+        agent.SetDestination(enemyCor[0].transform.position);
     }
-    
+
+    void OnTriggerEnter(Collider col)
+    {
+        //Debug.Log("hit" + col.name);
+        if (col.tag.Equals("teleporter"))
+        {
+            Debug.Log("hit");
+
+            transform.position = col.gameObject.GetComponent<telePort>().targetPos;
+        }
+    }
+
 }
