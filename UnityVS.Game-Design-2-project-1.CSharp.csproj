@@ -85,7 +85,8 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\enemySpawn.cs" />
     <Compile Include="Assets\Scripts\GameStructure.cs" />
     <Compile Include="Assets\Scripts\Hud\playerHud.cs" />
     <Compile Include="Assets\Scripts\Menus\PanelManager.cs" />
@@ -95,15 +96,15 @@
     <Compile Include="Assets\Scripts\Network\netConnect.cs" />
     <Compile Include="Assets\Scripts\Network\testNetTrafic.cs" />
     <Compile Include="Assets\Scripts\Network\testRpc.cs" />
-    <Compile Include="Assets\Scripts\PickUp.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PickUp.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
+    <Compile Include="Assets\Scripts\Player\fpsCam.cs" />
     <Compile Include="Assets\Scripts\Player\hashId.cs" />
     <Compile Include="Assets\Scripts\Player\playerNetData.cs" />
+    <Compile Include="Assets\Scripts\Player\playerShoot.cs" />
     <Compile Include="Assets\Scripts\Player\telePort.cs" />
-    <Compile Include="Assets\Scripts\fpsCam.cs" />
     <Compile Include="Assets\Scripts\itemPickup.cs" />
-    <Compile Include="Assets\Scripts\playerShoot.cs" />
     <Compile Include="Assets\Scripts\rotsky.cs" />
     <Compile Include="Assets\Scripts\spawnPlayer.cs" />
   </ItemGroup>
