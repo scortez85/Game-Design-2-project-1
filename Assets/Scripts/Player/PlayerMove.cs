@@ -31,7 +31,7 @@ public class PlayerMove : NetworkBehaviour
         cameras.GetComponent<fpsCam>().player = gameObject;
         ani = GetComponent<Animator>();
         hashID = GetComponent<hashId>();
-        speed = 0.6f;
+        speed = 2f;
         turning = 50f;
             //gameObject.name = "localPlayer";
         }

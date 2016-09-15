@@ -156,7 +156,7 @@ public class Player : NetworkBehaviour {
         killStreak = killStreak;
         numOfPickups = numOfPickups;
         pickUps = pickUps;
-        playerName = GetComponent<NetworkManager>().GetComponent<netConnect>().playerName;
+//        playerName = GetComponent<NetworkManager>().GetComponent<netConnect>().playerName;
     }
 
 
