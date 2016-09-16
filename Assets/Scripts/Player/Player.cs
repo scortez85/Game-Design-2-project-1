@@ -3,18 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class Player : NetworkBehaviour
+{
     public GameObject netman;
+    public GameObject scorePanel;
     [SyncVar]
-    public int kills, deaths, ammo, killStreak, numOfPickups;
+    public int kills, deaths, ammo, killStreak, numOfPickups, score;
     [SyncVar]
     public float health, speed, damage, damageMultiplier, attackSpeed, speedTimer, damageTimer;
     [SyncVar]
-    public string teamID,playerName;
+    public string teamID, playerName;
     [SyncVar]
     public List<string> pickUps;
     public AudioClip speedSound, damageSound;
     public AudioSource sfxSource;
+    [SyncVar]
+    public SortedDictionary<string, string> playerValues;
 
 
     public Player()
@@ -30,6 +34,8 @@ public class Player : NetworkBehaviour {
         teamID = "Blue";
         speedTimer = 0;
         damageTimer = 0;
+        playerValues = new SortedDictionary<string, string>();
+        loadValues();
     }
     public int getPlayerKills()
     {
@@ -64,9 +70,14 @@ public class Player : NetworkBehaviour {
         health += num;
     }
 
+    public void getScoreTable()
+    {
+
+    }
+
     public void OnCollisionEnter(Collision coll)//had to change from collider to collision
     {
-        if(coll.gameObject.tag.Equals("PickUp"))
+        if (coll.gameObject.tag.Equals("PickUp"))
         {
             GameObject.Destroy(coll.gameObject);
             pickUpSticks(coll.gameObject.GetComponent<PickUp>().pickUpName);
@@ -92,25 +103,25 @@ public class Player : NetworkBehaviour {
     {
         pickUps.Add(name);
 
-        for (int k=0;k<pickUps.Count-1;k++)
+        for (int k = 0; k < pickUps.Count - 1; k++)
         {
-            if (pickUps[k].Equals(pickUps[k+1]))
+            if (pickUps[k].Equals(pickUps[k + 1]))
             {
                 pickUps.Remove(name);
             }
 
-                
+
         }
     }
     public void removePickup(string name)
     {
-        for (int k=0;k<pickUps.Count;k++)
+        for (int k = 0; k < pickUps.Count; k++)
         {
             if (pickUps[k].Equals(name))
             {
                 pickUps.Remove(name);
                 if (name.Equals("Speed"))
-                GetComponent<PlayerMove>().speedMultiplier = 0;
+                    GetComponent<PlayerMove>().speedMultiplier = 0;
                 if (name.Equals("Damage"))
                     damageMultiplier = 0;
             }
@@ -121,6 +132,32 @@ public class Player : NetworkBehaviour {
     void Start()
     {
         sfxSource = GetComponent<AudioSource>();
+    }
+
+    void LateUpdate()
+    {
+        saveValues();
+    }
+
+    public void saveValues()
+    {
+        StreamWriter writer = new StreamWriter("playerValues.dat");
+        foreach (KeyValuePair<string, string> entry in myDic)
+        {
+            writer.WriteLine(entry.Key);
+            writer.WriteLine(entry.Value);
+        }
+        
+        writer.Close();
+
+    }
+    public void loadValues()
+    {
+        StreamReader reader = new StreamReader("playerValues.dat");
+        string score = reader.ReadLine();
+        string kills = reader.ReadLine();
+        playerValues.Add(score, kills);
+        reader.Close();
     }
 
     void Update()
@@ -143,10 +180,10 @@ public class Player : NetworkBehaviour {
         //else playerName = players[1].GetComponent<Player>().netman.GetComponent<netConnect>().playerName;
         if (isLocalPlayer)
             return;//this sends values only to other players
-        
+
 
         CmdsyncToServer();
-        
+
     }
 
     //sync some values to server 
@@ -162,9 +199,9 @@ public class Player : NetworkBehaviour {
         killStreak = killStreak;
         numOfPickups = numOfPickups;
         pickUps = pickUps;
-//        playerName = GetComponent<NetworkManager>().GetComponent<netConnect>().playerName;
+        //        playerName = GetComponent<NetworkManager>().GetComponent<netConnect>().playerName;
     }
 
 
 
-    }
+}
